@@ -1,0 +1,15 @@
+<div class="box main">
+    <div>
+        <img [src]="imageUrl + item.imageName" />
+        <span [innerHtml]="item.ProductName | highlight: searchQuery"></span>
+    </div>
+    <div class="bottomText">
+            <div>
+                <span [innerHtml]="item.Quantity.toString() | highlight: searchQuery"></span>
+                <span *ngIf="item.Quantity>1"> units    </span>
+                <span *ngIf="item.Quantity==1"> unit    </span>
+            </div>
+            <div [innerHtml]="item.TotalPrice | currency:'ILS' | highlight: searchQuery"></div>
+            <mat-icon (click)="deleteItem(item.ItemID)">delete</mat-icon>
+    </div>
+</div>

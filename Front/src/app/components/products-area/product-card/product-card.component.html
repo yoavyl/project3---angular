@@ -1,0 +1,19 @@
+<div *ngIf="!user.isAdmin" class="box" (click)="openDialog()">
+        <img [src]="imageUrl + product.imageName" />
+        <br/>
+        {{product.ProductName}}
+        <br />
+        Price: {{product.UnitPrice | currency:"ILS"}}
+        <br />
+        Click to add to cart
+</div>
+
+<div *ngIf="user.isAdmin" class="box" (click)="editProduct()">
+        <img [src]="imageUrl + product.imageName" />
+        <br/>
+        {{product.ProductName}}
+        <br />
+        Price: {{product.UnitPrice | currency:"ILS"}}
+        <br />
+        Click to edit product
+</div>

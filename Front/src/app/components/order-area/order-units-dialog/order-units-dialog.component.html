@@ -1,0 +1,15 @@
+<div class="dialogBox">
+  <h5 mat-dialog-title>Add me to your cart</h5>
+  <br/>
+  <div mat-dialog-content>
+    <img [src]="imageUrl + data.imageName" width="200">
+    <p>How many units of {{data.name}}?</p>
+    <mat-form-field appearance="fill">
+      <mat-label>units</mat-label>
+      <input matInput type="number" min="1" [(ngModel)]="data.quantity">
+    </mat-form-field>
+    <br/>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data.quantity" cdkFocusInitial>Ok</button>
+  </div>
+</div>

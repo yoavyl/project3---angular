@@ -1,0 +1,40 @@
+<div *ngIf="updateRequest">
+
+    <form (submit)="update()" [formGroup]="productForm">
+
+        <h3>{{product.ProductName}}</h3>
+        <br/>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Name: </mat-label>
+            <input matInput type="text" [formControl]="nameControl" required>
+            <mat-error *ngIf="nameControl.errors?.required">Missing name.</mat-error>
+            <mat-error *ngIf="nameControl.errors?.pattern && nameControl.touched">Name must start with a capital letter.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Price: </mat-label>
+            <input matInput type="number" [formControl]="priceControl" required>
+            <mat-error *ngIf="priceControl.invalid">Missing price.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Category: </mat-label>
+            <mat-select matInput [formControl]="categoryControl" [value]="product.CategoryID" required>
+                <mat-option *ngFor="let c of categories" [value]="c.CategoryID">{{c.CategoryName}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="categoryControl.errors?.required">Must select a category.</mat-error>
+        </mat-form-field>
+
+          <mat-form-field>
+                <mat-label>Image: *</mat-label>
+                <input matInput [formControl]="imageControl"/>
+                <input type="file" (change)="saveImage($event)"
+                accept="image/jpeg" required/>
+        </mat-form-field>
+
+        <button [disabled]="productForm.invalid">Update</button>
+
+    </form>
+
+</div>

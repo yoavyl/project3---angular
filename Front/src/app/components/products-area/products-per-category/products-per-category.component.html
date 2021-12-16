@@ -1,0 +1,26 @@
+<mat-drawer-container class="example-container">
+    <mat-drawer #drawer mode="side" style="width:500px" opened>
+        <app-menu></app-menu>
+    </mat-drawer>
+    <mat-drawer-content>
+        
+        <button *ngIf="leftArrow" mat-raised-button (click)="drawer.toggle()" (click)="left()">
+            <mat-icon>arrow_left</mat-icon>
+        </button>
+        <button *ngIf="rightArrow" mat-raised-button (click)="drawer.toggle()" (click)="right()"><mat-icon>arrow_right</mat-icon>
+        </button>
+        <div>
+            <div class="bar">
+                <app-search-product></app-search-product>
+
+                <app-please-wait *ngIf="!products"></app-please-wait>
+            
+                <a routerLink="/products">All Products</a>
+            
+                <app-category-list (click)="ngOnInit()"></app-category-list>
+            </div>        
+            <app-product-card *ngFor="let p of products" [product]="p"></app-product-card>
+        
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

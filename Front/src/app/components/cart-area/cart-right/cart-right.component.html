@@ -1,0 +1,14 @@
+<div *ngIf="user">
+    <div *ngIf="openCart">
+        You have an open cart from 
+        <br/>
+        {{cart[0].Date | date:"dd-MM-yyyy"}} for {{totalCart | currency:"ILS"}}
+    </div>
+    <div *ngIf="!openCart && orders">
+
+        Your last order was on {{orders[0].Date | date:"dd-MM-yyyy"}}
+    </div>
+    <div *ngIf="!openCart && !orders">
+        welcome {{user.firstName}}
+    </div>
+</div>

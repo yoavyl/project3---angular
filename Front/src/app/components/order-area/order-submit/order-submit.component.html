@@ -1,0 +1,51 @@
+<a routerLink="/products" routerLinkActive="active">Back to shop</a>
+
+<h3>
+    ORDER
+</h3>
+<div>
+
+    <form (submit)="submit()" [formGroup]="orderForm">
+
+    <h4>Shipping details</h4>
+
+        <mat-form-field appearance="outline">
+            <mat-label>City: </mat-label>
+            <mat-select matInput [formControl]="cityControl" required>
+                <mat-option *ngFor="let c of cities" [value]="c.city">{{c.city}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="cityControl.errors?.required">Missing city</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Street: </mat-label>
+            <input matInput type="text" [formControl]="streetControl" required (dblclick)="dblstreet()">
+            <mat-error *ngIf="streetControl.errors?.required">Missing street</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Shipping date: </mat-label>
+            <input matInput [matDatepicker]="picker" [matDatepickerFilter]="myFilter" [min]="today" [formControl]="deliveryControl" required>
+             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="deliveryControl.errors?.required">Missing shipping date</mat-error>
+        </mat-form-field>
+
+        <h4>Payments:</h4>
+        <hr/>
+        <mat-form-field appearance="outline">
+            <mat-label>Credit card: </mat-label>
+            <input matInput type="text" [formControl]="creditControl" required>
+            <mat-error *ngIf="creditControl.errors?.required">Missing credit card</mat-error>
+            <mat-error *ngIf="creditControl.errors?.pattern && creditControl.touched">Missing correct credit card deails</mat-error>
+        </mat-form-field>
+
+        <button [disabled]="orderForm.invalid" mat-stroked-button>
+            <mat-icon>send</mat-icon>
+            Order
+        </button>
+
+
+    </form>
+
+</div>

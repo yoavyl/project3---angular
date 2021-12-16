@@ -1,0 +1,9 @@
+<h4 mat-dialog-title>Hi, you did it! Your order is on its way to your house</h4>
+<div mat-dialog-content>
+  <p><a [href]="fileDir + fileName">
+    Your order no.: {{orders[0].OrderID}}
+    Click here to download the receipt</a></p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Got it</button>
+</div>

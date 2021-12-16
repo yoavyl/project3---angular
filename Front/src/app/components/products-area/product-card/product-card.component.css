@@ -1,0 +1,24 @@
+div {
+	width: 250px;
+    height: 300px;
+    text-align: center;
+    align-items: center;
+    background-color: white;
+    padding-right: 0;
+}
+
+img {
+    width: 250px;
+    height: 300px;
+    border-radius: 10px;
+    vertical-align: middle;
+}
+
+a {
+    margin-left: auto;
+}
+
+div:hover {
+    border-radius: 10px;
+    border: 3px solid lightblue;
+}

@@ -1,0 +1,32 @@
+<div class="main" *ngIf="(user && isNotHome())">
+    <div id="start">
+        <mat-form-field *ngIf="isOrder()">
+            <input matInput type="text" [(ngModel)]="searchQuery"/>
+            <mat-placeholder>Search in cart...</mat-placeholder>
+            <mat-icon matSuffix style="font-size: 1.2em">search</mat-icon>
+        </mat-form-field>    
+        <h5>My Cart</h5>
+        <app-item-card *ngFor="let i of items" [item]="i" [items]="items" 
+        [cart]="cart" [searchQuery]="searchQuery" [deleteItem]="deleteItem" 
+        [getLastCart]="getLastCart" [user]="user"></app-item-card>
+
+        <!-- <app-total-cart [totalCart]="totalCart" [cart]="cart" [order]="order" -->
+         <!-- [deleteCart]="deleteCart" [emptyCart]="emptyCart" [getLastCart]="getLastCart" -->
+         <!-- [user]="user"></app-total-cart> -->
+
+
+        <app-total-cart [totalCart]="totalCart" [cart]="cart"></app-total-cart>
+        
+        <div class="buttons" *ngIf="totalCart>0">
+            <button mat-stroked-button (click)="order()">
+                <mat-icon>send</mat-icon>
+                Submit your order
+            </button>
+            <button mat-stroked-button (click)="deleteCart(cart[0].CartID)">
+                <mat-icon>delete_forever</mat-icon>
+                Empty your cart
+            </button>
+        </div>
+    </div>    
+</div>
+

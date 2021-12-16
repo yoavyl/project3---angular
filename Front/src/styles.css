@@ -1,0 +1,45 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+/* @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    text-align: center;
+    font-style: italic;
+    color: darkcyan;
+    background-image: linear-gradient(45deg, lightblue, white);
+}
+
+a {
+    color: blue;
+}
+
+.box {
+    display: inline-block;
+    text-align: left;
+    border: 1px solid black;
+    padding: 0 0px;
+    margin: 10px;
+    /* box-sizing: border-box; */
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.active {
+    color: darkslategrey;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.igx-typography {
+    font-family: Helvetica,Arial,sans-serif
+    /* font-size: 12px; */
+}

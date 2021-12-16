@@ -1,0 +1,16 @@
+form {
+    width: 300px;
+    margin: auto;
+    text-align: left;
+}
+
+input, button, label {
+	width: 100%;
+    box-sizing: border-box;
+    font-size: x-large;
+    margin-bottom: 30px;
+}
+
+mat-form-field {
+    width: 300px;
+}

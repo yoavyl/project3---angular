@@ -1,0 +1,13 @@
+.start {
+  position: fixed;
+  top: 370px;
+  left: 139px;
+}
+
+.ad {
+  padding-top: 50px;
+  height: 200px;
+  font-weight: bold;
+  font-size: x-large;
+  border: 2px solid blue;
+}

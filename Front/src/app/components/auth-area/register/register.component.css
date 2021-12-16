@@ -1,0 +1,51 @@
+ 
+form, mat-form-field  {
+    width: 300px;
+    margin: auto;
+    text-align: left;
+}
+
+input, label {
+	width: 100%;
+    box-sizing: border-box;
+    font-size: x-large;
+    margin-bottom: 20px;
+}
+
+button {
+    width: 50%;
+    box-sizing: border-box;
+    font-size: x-large;
+    margin-bottom: 20px;
+}
+
+.back {
+    font-size: medium;
+}
+/* 
+
+form, mat-form-field {
+    width: 300px;
+    margin: auto;
+    text-align: left;
+}
+
+form {
+    height: 100%;
+} */
+
+/* div {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    padding: 0 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+input, button, label {
+	width: 100%;
+    box-sizing: border-box;
+    font-size: x-large;
+    margin-bottom: 30px;
+} */

@@ -1,0 +1,19 @@
+form, mat-form-field  {
+    width: 300px;
+    margin: auto;
+    text-align: left;
+}
+
+input, button, label {
+	width: 100%;
+    box-sizing: border-box;
+    font-size: x-large;
+    margin-bottom: 20px;
+}
+
+a {
+    position: absolute;
+    left: 235px;
+    margin-top: 20px;
+    
+}

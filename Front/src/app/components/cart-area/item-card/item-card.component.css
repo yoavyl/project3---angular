@@ -1,0 +1,36 @@
+.main {
+    box-sizing: border-box; 
+	width: 300px;
+    height: 100px;
+    margin: 2px;
+      text-align: left;
+      padding-top: 5px;
+      padding-left: 5px;
+      padding-right: 5px;
+}
+
+.bottomText { 
+    
+  display: flex;
+  justify-content: space-between; 
+}
+
+mat-icon {
+    position: relative;
+top: 5px;
+right: 5px;
+ } 
+
+img {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+    vertical-align: middle;
+}
+
+.box:hover {
+    border-radius: 10px;
+    border: 3px solid lightblue;
+}

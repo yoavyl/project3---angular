@@ -1,0 +1,192 @@
+<div>
+
+    <h2 *ngIf="!step">Register - step 1</h2>
+    <h2 *ngIf="step">Register - step 2</h2>
+    <h5>*all fields are required</h5>
+
+    <form (submit)="register()">
+
+        <section *ngIf="!step">
+
+        <mat-form-field appearance="outline">
+            <mat-label>ID: </mat-label>
+            <input matInput #idcardBox="ngModel" type="text" [(ngModel)]="user.idcard" name="idcard" required pattern="^[0-9]\d{8}" (keyup)="checkId()">
+            <mat-error *ngIf="idcardBox.errors?.required">Missing ID.</mat-error>
+            <mat-error *ngIf="idcardBox.errors?.pattern">ID must contain 9 numbers.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email: </mat-label>
+            <input matInput #emailBox="ngModel" type="email" [(ngModel)]="user.email" name="email" required email (keyup)="checkEmail()">
+            <mat-error *ngIf="emailBox.errors?.required ">Missing email.</mat-error>
+            <mat-error *ngIf="emailBox.errors?.email">Not valid emial address.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password: </mat-label>
+            <input matInput #passwordBox="ngModel" type="password" [(ngModel)]="user.password" name="password" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+            <mat-error *ngIf="passwordBox.errors?.required">Missing password.</mat-error>
+            <mat-error *ngIf="passwordBox.errors?.pattern">password must be 8 characters long and contain at least one letter and one number.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Confirm password: </mat-label>
+            <input matInput #passwordBox2="ngModel" type="password" [(ngModel)]="user.password2" name="password2" required pattern="{{passwordBox.value}}">
+            <mat-error *ngIf="passwordBox2.errors?.required">Missing confirmation password.</mat-error>
+            <mat-error *ngIf="passwordBox2.errors?.pattern">passwords must be identical.</mat-error>
+        </mat-form-field>
+
+        <mat-hint *ngIf="idExists" style="color:red">ID already exsits in our database</mat-hint>
+        <mat-hint *ngIf="emailExists" style="color:red">Email already exsits in our database</mat-hint>
+
+        <br/>
+
+        <button mat-stroked-button type="reset">
+            <mat-icon>clear</mat-icon>
+            Reset            
+        </button>
+        <button mat-stroked-button type="button" (click)="idcardBox.errors || emailBox.errors || passwordBox.errors || passwordBox2.errors || idExists || emailExists ? null: continue();" > 
+            <mat-icon>forward</mat-icon>
+            Step 2
+        </button>
+
+
+        </section>
+
+        <section *ngIf="step">
+            
+            <mat-form-field appearance="outline">
+                <mat-label>First Name: </mat-label>
+                <input matInput #firstNameBox="ngModel" type="text" [(ngModel)]="user.firstName" name="firstName" required pattern="^[A-Z].*$">
+                <mat-error *ngIf="firstNameBox.errors?.required">Missing first name.</mat-error>
+                <mat-error *ngIf="firstNameBox.errors?.pattern">First Name must start with a capital letter.</mat-error>
+            </mat-form-field>    
+
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name: </mat-label>
+                <input matInput #lastNameBox="ngModel" type="text" [(ngModel)]="user.lastName" name="lastName" required pattern="^[A-Z].*$">
+                <mat-error *ngIf="lastNameBox.errors?.required">Missing last name.</mat-error>
+                <mat-error *ngIf="lastNameBox.errors?.pattern">Last Name must start with a capital letter.</mat-error>
+            </mat-form-field>   
+
+            <mat-form-field appearance="outline">
+                <mat-label>City: </mat-label>
+                <mat-select matInput #cityBox="ngModel" [(ngModel)]="user.city" name="city" required>
+                    <mat-option *ngFor="let c of cities" [value]="c.city">{{c.city}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="cityBox.errors?.required">Must select a city.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Street: </mat-label>
+                <input matInput #streetBox="ngModel" type="text" [(ngModel)]="user.street" name="street" required>
+                <mat-error *ngIf="streetBox.errors?.required">Missing street.</mat-error>
+            </mat-form-field>
+
+            <button mat-stroked-button class="back" type="button" (click)="back()" > 
+                <mat-icon>redo</mat-icon>
+                Back to step 1
+            </button>
+
+        <button mat-stroked-button> 
+            <mat-icon>send</mat-icon>
+            Register
+        </button>
+
+        </section>
+
+    </form>
+
+    
+
+</div>
+<!-- 
+<div>
+
+    <form #regForm="ngForm" (submit)="register()">
+
+        
+    <h4>Step 1</h4>
+
+
+
+        <mat-form-field appearance="outline">
+            <mat-label>ID: </mat-label>
+            <input matInput #idcardBox="ngModel" type="text" [(ngModel)]="user.idcard" name="idcard" required pattern="^[0-9]\d{8}" (keyup)="checkId()">
+            <mat-error *ngIf="idcardBox.errors?.required">Missing ID.</mat-error>
+            <mat-error *ngIf="idcardBox.errors?.pattern">ID must contain 9 numbers.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email: </mat-label>
+            <input matInput #emailBox="ngModel" type="email" [(ngModel)]="user.email" name="email" required email (keyup)="checkEmail()">
+            <mat-error *ngIf="emailBox.errors?.required ">Missing email.</mat-error>
+            <mat-error *ngIf="emailBox.errors?.email">Not valid emial address.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password: </mat-label>
+            <input matInput #passwordBox="ngModel" type="password" [(ngModel)]="user.password" name="password" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+            <mat-error *ngIf="passwordBox.errors?.required">Missing password.</mat-error>
+            <mat-error *ngIf="passwordBox.errors?.pattern">password must be 8 characters long and contain at least one letter and one number.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Confirm password: </mat-label>
+            <input matInput #passwordBox2="ngModel" type="password" [(ngModel)]="user.password2" name="password2" required pattern="{{passwordBox.value}}">
+            <mat-error *ngIf="passwordBox2.errors?.required">Missing confirmation password.</mat-error>
+            <mat-error *ngIf="passwordBox2.errors?.pattern">passwords must be identical.</mat-error>
+        </mat-form-field>
+
+        <div *ngIf="idExists" style="color:red">ID already exsits in our database</div>
+        <div *ngIf="emailExists" style="color:red">Email already exsits in our database</div>
+
+        <br/>
+
+        <button mat-stroked-button type="reset">
+            <mat-icon>clear</mat-icon>
+            Reset            
+        </button>
+    </form>
+    <form #regForm="ngForm" (submit)="register()">
+        <h4>Step 2</h4>
+            
+            <mat-form-field appearance="outline" >
+                <mat-label>First Name: </mat-label>
+                <input matInput #firstNameBox="ngModel" type="text" [(ngModel)]="user.firstName" name="firstName" required pattern="^[A-Z].*$"
+                [attr.disbaled]="checkId() || checkEmail()">
+                <mat-error *ngIf="firstNameBox.errors?.required">Missing first name.</mat-error>
+                <mat-error *ngIf="firstNameBox.errors?.pattern">First Name must start with a capital letter.</mat-error>
+            </mat-form-field>    
+
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name: </mat-label>
+                <input matInput #lastNameBox="ngModel" type="text" [(ngModel)]="user.lastName" name="lastName" required pattern="^[A-Z].*$">
+                <mat-error *ngIf="lastNameBox.errors?.required">Missing last name.</mat-error>
+                <mat-error *ngIf="lastNameBox.errors?.pattern">Last Name must start with a capital letter.</mat-error>
+            </mat-form-field>   
+
+            <mat-form-field appearance="outline">
+                <mat-label>City: </mat-label>
+                <mat-select matInput #cityBox="ngModel" [(ngModel)]="user.city" name="city" required>
+                    <mat-option *ngFor="let c of cities" [value]="c.city">{{c.city}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="cityBox.errors?.required">Must select a city.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Street: </mat-label>
+                <input matInput #streetBox="ngModel" type="text" [(ngModel)]="user.street" name="street" required>
+                <mat-error *ngIf="streetBox.errors?.required">Missing street.</mat-error>
+            </mat-form-field>
+        <button mat-stroked-button [disabled]="regForm.form.invalid || checkEmail() || checkId()"> 
+            <mat-icon>send</mat-icon>
+            Register
+        </button>
+
+
+    </form>
+
+    
+
+</div> -->

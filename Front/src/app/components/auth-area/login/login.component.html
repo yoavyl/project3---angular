@@ -1,0 +1,38 @@
+<div *ngIf="!user">
+
+    <h3> 
+        <mat-icon>login</mat-icon>
+         Sign in
+    </h3>
+
+    <form (submit)="login()">
+
+        <mat-form-field floatLabel="always" appearance="outline">
+            <mat-label>Email: </mat-label>
+            <input matInput #emailBox="ngModel" type="email" name="email" [(ngModel)]="credentials.email" required email>
+            <mat-error *ngIf="emailBox.errors?.required">Missing email</mat-error>
+            <mat-error *ngIf="emailBox.errors?.email">Must be valid email address.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field floatLabel="always" appearance="outline">
+            <mat-label>Password: </mat-label>
+            <input matInput #passBox="ngModel" type="password" name="password" [(ngModel)]="credentials.password" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+            <mat-error *ngIf="passBox.errors?.required">Missing password</mat-error>
+            <mat-error *ngIf="passBox.errors?.pattern">password must be 8 characters long and contain at least one letter and one number.</mat-error>
+
+        </mat-form-field>
+
+        <br/>
+
+        <button mat-stroked-button>
+            <mat-icon>send</mat-icon>
+            Login
+        </button>
+        <button mat-stroked-button type="button" (click)="reg()" > 
+            <mat-icon>forward</mat-icon>
+            Sign up
+        </button>
+
+    </form>
+
+</div>

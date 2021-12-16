@@ -1,0 +1,24 @@
+<div *ngIf="!isNotHome()" style="width: 100%;"> 
+    <div class="ad">
+        YOUR AD
+        <br/>
+        HERE
+    </div>
+    <div class="start" *ngIf="openCart">
+        <a routerLink="/products" routerLinkActive="active">
+            <button mat-stroked-button>
+                Resume shopping
+                <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+        </a>
+    </div>
+    <div class="start" *ngIf="!openCart"> 
+        <a routerLink="/products" routerLinkActive="active">
+            <button mat-stroked-button>
+                Start shopping
+                <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+        </a>
+    </div>
+</div>
+    
